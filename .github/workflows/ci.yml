@@ -38,5 +38,5 @@ jobs:
           STRIPE_WEBHOOK_SECRET: whsec_stub
           STRIPE_PRICE_ID: price_stub
           NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: pk_test_stub
-          NEXT_PUBLIC_POSTHOG_KEY: phc_stub
+          NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN: phc_stub
           NEXT_PUBLIC_APP_URL: http://localhost:3000
