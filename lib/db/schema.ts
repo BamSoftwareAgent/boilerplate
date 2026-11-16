@@ -10,9 +10,10 @@ export const users = pgTable("users", {
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
   // Stripe
   stripeCustomerId: text("stripe_customer_id").unique(),
-  // Subscription state — driven by webhooks, never the client
   subscriptionId: text("subscription_id"),
-  subscriptionStatus: text("subscription_status"), // trialing | active | past_due | canceled | unpaid
+  // Authoritative status driven by webhooks. Never trust client-side session state.
+  // Values: trialing | active | past_due | canceled | unpaid | null
+  subscriptionStatus: text("subscription_status"),
   subscriptionPriceId: text("subscription_price_id"),
   trialEndsAt: timestamp("trial_ends_at"),
   currentPeriodEnd: timestamp("current_period_end"),
@@ -55,4 +56,12 @@ export const verifications = pgTable("verifications", {
   expiresAt: timestamp("expires_at").notNull(),
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
+});
+
+/** Raw Stripe webhook events — append-only log for idempotency and debugging. */
+export const stripeEvents = pgTable("stripe_events", {
+  id: text("id").primaryKey(), // Stripe event id (evt_…)
+  type: text("type").notNull(),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  payload: text("payload").notNull(), // raw JSON
 });

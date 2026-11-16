@@ -10,7 +10,8 @@
     "typecheck": "tsc --noEmit",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
-    "db:push": "drizzle-kit push"
+    "db:push": "drizzle-kit push",
+    "stripe:setup": "tsx scripts/stripe-setup.ts"
   },
   "dependencies": {
     "@better-auth/cli": "^1.4.22",
@@ -27,15 +28,16 @@
     "next": "^16.4.6",
     "posthog-js": "^1.450.0",
     "posthog-node": "^5.21.2",
-    "react": "^18",
-    "react-dom": "^18",
+    "react": "^19",
+    "react-dom": "^19",
     "stripe": "^23.1.0",
     "tailwind-merge": "^3.7.0"
   },
   "devDependencies": {
     "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "tsx": "^4.19.4",
     "eslint": "^10.15.0",
     "eslint-config-next": "^16.4.6",
     "postcss": "^8",
