@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { ChevronDown } from "lucide-react";
 import { muse } from "@/muse.config";
 import { cn } from "@/lib/utils";
 
@@ -13,18 +14,16 @@ function FaqItem({ q, a }: { q: string; a: string }) {
       <button
         onClick={() => setOpen(!open)}
         aria-expanded={open}
-        className="w-full flex justify-between items-start py-4 text-left text-sm font-medium text-gray-900 hover:text-indigo-600 transition-colors gap-4"
+        className="w-full flex justify-between items-start py-4 text-left text-sm font-medium text-gray-900 hover:text-brand transition-colors gap-4"
       >
         <span>{q}</span>
-        <span
+        <ChevronDown
           aria-hidden
           className={cn(
-            "flex-shrink-0 text-gray-400 transition-transform duration-200",
+            "flex-shrink-0 w-4 h-4 text-gray-400 transition-transform duration-200",
             open && "rotate-180",
           )}
-        >
-          ▾
-        </span>
+        />
       </button>
       {open && (
         <p className="pb-4 text-sm text-gray-600 leading-relaxed">{body}</p>

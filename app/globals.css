@@ -2,22 +2,40 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Base tokens ──────────────────────────────────────────────────────────── */
 :root {
   --background: #ffffff;
   --foreground: #171717;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ── Preset: indigo ───────────────────────────────────────────────────────── */
+/* Cool, professional. Blue-violet brand, 8px radius. */
+.theme-indigo {
+  --brand:       238 84% 67%;   /* indigo-500  */
+  --brand-dark:  238 84% 57%;   /* indigo-600  */
+  --brand-light: 238 100% 97%;  /* indigo-50   */
+  --brand-fg:    0 0% 100%;     /* white       */
+  --accent:      238 84% 57%;
+  --accent-dark: 238 84% 47%;
+  --radius:      0.5rem;
+}
+
+/* ── Preset: forest ───────────────────────────────────────────────────────── */
+/* Warm, grounded. Emerald brand, amber accent, 10px radius. */
+.theme-forest {
+  --brand:       158 64% 38%;   /* emerald-600 */
+  --brand-dark:  158 64% 30%;   /* emerald-700 */
+  --brand-light: 152 81% 96%;   /* emerald-50  */
+  --brand-fg:    0 0% 100%;     /* white       */
+  --accent:      38 92% 50%;    /* amber-500   */
+  --accent-dark: 32 95% 44%;    /* amber-600   */
+  --radius:      0.625rem;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
 }
 
 @layer utilities {

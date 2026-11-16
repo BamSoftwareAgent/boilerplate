@@ -3,6 +3,11 @@
  * Everything on the landing page comes from here.
  */
 
+// ── Types ──────────────────────────────────────────────────────────────────────
+type BenefitPillar = { icon: string; title: string; body: string };
+type Testimonial = { quote: string; name: string; role: string };
+type Logo = { src: string; alt: string };
+
 export const muse = {
   // ── Identity ────────────────────────────────────────────────────────────────
   name: "App Name",
@@ -20,12 +25,23 @@ export const muse = {
     image: "/og.png",
   },
 
+  // ── Theme ─────────────────────────────────────────────────────────────────────
+  // "indigo"  — cool, professional, blue-violet brand colour
+  // "forest"  — warm, grounded, emerald brand colour
+  // Change this single value to swap the entire colour scheme.
+  theme: {
+    preset: "indigo" as "indigo" | "forest",
+  },
+
   // ── Hero ─────────────────────────────────────────────────────────────────────
   hero: {
     eyebrow: "PRODUCT CATEGORY",
     headline: "The headline that names the outcome",
     subheadline:
       "One or two sentences describing the problem you solve and who you solve it for.",
+    // Path to a product screenshot or illustration, e.g. "/screenshots/app.png"
+    // Set to null for a clean text-only hero layout.
+    visual: null as string | null,
   },
 
   // ── Problem / After ──────────────────────────────────────────────────────────
@@ -41,23 +57,41 @@ export const muse = {
   },
 
   // ── Benefit pillars (exactly 3) ───────────────────────────────────────────────
-  benefits: [
-    {
-      icon: "⚡",
-      title: "Benefit pillar one",
-      body: "One sentence explaining what this pillar does and why it matters.",
-    },
-    {
-      icon: "🔒",
-      title: "Benefit pillar two",
-      body: "One sentence explaining what this pillar does and why it matters.",
-    },
-    {
-      icon: "📈",
-      title: "Benefit pillar three",
-      body: "One sentence explaining what this pillar does and why it matters.",
-    },
-  ] as [BenefitPillar, BenefitPillar, BenefitPillar],
+  // icon: a Lucide icon name. Supported: Zap, Shield, TrendingUp, Clock, Star,
+  // Users, Layers, Globe, CheckCircle, Bell, Rocket, Lock, BarChart, Sparkles
+  benefits: {
+    // The section heading — set this to match what your pillars actually describe.
+    heading: "Why it works",
+    pillars: [
+      {
+        icon: "Zap",
+        title: "Benefit pillar one",
+        body: "One sentence explaining what this pillar does and why it matters.",
+      },
+      {
+        icon: "Shield",
+        title: "Benefit pillar two",
+        body: "One sentence explaining what this pillar does and why it matters.",
+      },
+      {
+        icon: "TrendingUp",
+        title: "Benefit pillar three",
+        body: "One sentence explaining what this pillar does and why it matters.",
+      },
+    ] as [BenefitPillar, BenefitPillar, BenefitPillar],
+  },
+
+  // ── Social proof ──────────────────────────────────────────────────────────────
+  // Renders nothing when all fields are empty.
+  // ⚠ Never add invented or placeholder proof — it gets ads accounts banned.
+  proof: {
+    // e.g. "Trusted by 2,400+ teams" — or null to hide.
+    customerCount: null as string | null,
+    // Real testimonials only — leave empty until you have them.
+    testimonials: [] as Testimonial[],
+    // Company logos — leave empty until you have permission to use them.
+    logos: [] as Logo[],
+  },
 
   // ── Pricing ──────────────────────────────────────────────────────────────────
   pricing: {
@@ -107,4 +141,3 @@ export const muse = {
 } as const;
 
 export type MuseConfig = typeof muse;
-type BenefitPillar = { icon: string; title: string; body: string };

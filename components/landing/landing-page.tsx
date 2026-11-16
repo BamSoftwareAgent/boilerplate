@@ -6,8 +6,10 @@ import { muse } from "@/muse.config";
 import { Hero } from "./hero";
 import { ProblemAfter } from "./problem-after";
 import { Benefits } from "./benefits";
+import { Proof } from "./proof";
 import { Pricing } from "./pricing";
 import { Faq } from "./faq";
+import { StickyTrialBar } from "./sticky-trial-bar";
 
 export function LandingPage() {
   useEffect(() => {
@@ -20,6 +22,7 @@ export function LandingPage() {
         <Hero />
         <ProblemAfter />
         <Benefits />
+        <Proof />
         <Pricing />
         <Faq />
       </main>
@@ -42,6 +45,7 @@ export function LandingPage() {
           </a>
         </div>
       </footer>
+      <StickyTrialBar />
     </div>
   );
 }

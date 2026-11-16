@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const adsId = muse.googleAdsConversionId;
   return (
-    <html lang="en">
+    <html lang="en" className={`theme-${muse.theme.preset}`}>
       <head>
         {/* Google Ads conversion tag — only rendered when NEXT_PUBLIC_GOOGLE_ADS_ID is set */}
         {adsId && (
