@@ -44,10 +44,10 @@ export function StartTrialButton({
         disabled={loading}
         aria-busy={loading}
         className={cn(
-          "rounded-lg bg-indigo-600 text-white font-semibold transition-colors",
-          "hover:bg-indigo-700 active:bg-indigo-800",
+          "rounded-muse bg-brand text-brand-fg font-semibold transition-colors",
+          "hover:bg-brand-dark active:bg-brand-dark",
           "disabled:opacity-60 disabled:cursor-not-allowed",
-          "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600",
+          "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand",
           size === "lg" ? "px-8 py-3 text-base" : "px-5 py-2.5 text-sm",
           className,
         )}
@@ -55,7 +55,7 @@ export function StartTrialButton({
         {loading ? (
           <span className="flex items-center gap-2">
             <span
-              className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent"
+              className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent"
               role="status"
               aria-label="Loading"
             />
