@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
+import { getSessionCookie } from "better-auth/cookies";
 
-const PROTECTED = ["/dashboard"];
+const PROTECTED = ["/dashboard", "/admin"];
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -8,8 +9,9 @@ export function middleware(request: NextRequest) {
   const isProtected = PROTECTED.some((p) => pathname.startsWith(p));
   if (!isProtected) return NextResponse.next();
 
-  // Better Auth sets a session cookie named "better-auth.session_token"
-  const sessionToken = request.cookies.get("better-auth.session_token");
+  // getSessionCookie handles both the plain and __Secure- prefixed cookie names,
+  // so this works correctly on HTTPS (Vercel) and HTTP (local dev).
+  const sessionToken = getSessionCookie(request);
   if (!sessionToken) {
     const loginUrl = new URL("/login", request.url);
     loginUrl.searchParams.set("redirect", pathname);
@@ -20,5 +22,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/dashboard/:path*"],
+  matcher: ["/dashboard/:path*", "/admin/:path*"],
 };

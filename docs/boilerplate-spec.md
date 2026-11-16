@@ -1,12 +1,3 @@
-Answers to your questions, all from the spec:
-- Stack: Next.js App Router + TypeScript + Tailwind + shadcn/ui, Neon Postgres + Drizzle, Better Auth, Vercel Pro, Stripe Checkout + Billing + Customer Portal, Resend, PostHog, Sentry, Better Stack.
-- Week 1 exit criterion: a validation page can be deployed for a real idea, with UTM capture, the real price, and a "Start trial" button that opens real Stripe Checkout (test mode, 14-day card-required trial), with checkout_started recorded in PostHog carrying the UTM source. No signup, no dashboard, no auth in week 1.
-- Validation-mode landing page: NOT a waitlist. Hero, problem/after state, 3 benefit pillars, real price, FAQ, Start trial button into real Stripe Checkout. Email waitlists never count as payment intent.
-- Analytics: PostHog.
-
-After the spec PR is merged, build week 1 as previously asked: one PR per component, stop at the exit criterion.
-
-
 # 0.4 — Boilerplate Specification (The Reusable Machine)
  
 Foundation output. Built once, used by every muse. Updated 23 October 2026.

@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+        # --legacy-peer-deps is needed because some packages still declare
+        # peer deps against older eslint/next majors
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build
+        run: npm run build
+        env:
+          # Stub values so the build can run without real secrets.
+          # Validation only fires at runtime (instrumentation.ts), not at build time.
+          DATABASE_URL: postgresql://stub:stub@stub/stub
+          BETTER_AUTH_SECRET: ci-stub-secret-32-chars-xxxxxxxxx
+          BETTER_AUTH_URL: http://localhost:3000
+          STRIPE_SECRET_KEY: sk_test_stub
+          STRIPE_WEBHOOK_SECRET: whsec_stub
+          STRIPE_PRICE_ID: price_stub
+          NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: pk_test_stub
+          NEXT_PUBLIC_POSTHOG_KEY: phc_stub
+          NEXT_PUBLIC_APP_URL: http://localhost:3000
