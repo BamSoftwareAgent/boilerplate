@@ -18,24 +18,24 @@
 }
 
 /* ── Preset: indigo ───────────────────────────────────────────────────────── */
-/* Cool, professional. Blue-violet brand with a violet gradient partner. */
+/* Cool, professional. True-blue brand with a sky-blue gradient partner. */
 .theme-indigo {
-  --brand:       238 84% 63%;   /* indigo-500  */
-  --brand-2:     275 85% 62%;   /* violet — gradient partner */
-  --brand-dark:  238 74% 54%;   /* indigo-600  */
-  --brand-light: 238 100% 97%;  /* indigo-50   */
+  --brand:       217 91% 58%;   /* blue-500    */
+  --brand-2:     199 89% 48%;   /* sky — gradient partner */
+  --brand-dark:  221 83% 51%;   /* blue-600    */
+  --brand-light: 214 100% 97%;  /* blue-50     */
   --brand-fg:    0 0% 100%;     /* white       */
-  --accent:      238 84% 57%;
-  --accent-dark: 238 84% 47%;
+  --accent:      221 83% 53%;
+  --accent-dark: 224 76% 46%;
   --radius:      0.75rem;
 }
 
 /* Brighter brand hues + deep tinted surfaces for dark backgrounds */
 .dark.theme-indigo {
-  --brand:       238 92% 71%;
-  --brand-2:     275 92% 72%;
-  --brand-dark:  238 88% 64%;
-  --brand-light: 238 45% 14%;
+  --brand:       213 94% 66%;
+  --brand-2:     198 93% 60%;
+  --brand-dark:  217 91% 60%;
+  --brand-light: 217 50% 13%;
 }
 
 /* ── Preset: forest ───────────────────────────────────────────────────────── */
