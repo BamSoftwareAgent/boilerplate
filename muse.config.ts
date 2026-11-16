@@ -104,6 +104,18 @@ export const muse = {
   // ── Google Ads ───────────────────────────────────────────────────────────────
   // Set NEXT_PUBLIC_GOOGLE_ADS_ID=AW-XXXXXXXXX/YYYYYYY in .env to enable.
   googleAdsConversionId: process.env.NEXT_PUBLIC_GOOGLE_ADS_ID ?? null,
+
+  // ── Stripe ───────────────────────────────────────────────────────────────────
+  stripe: {
+    // Human-readable product name created in Stripe by scripts/stripe-setup.ts.
+    productName: "App Name Subscription",
+    // Statement descriptor shown on the customer's card statement (max 22 chars).
+    statementDescriptor: "APP NAME",
+    // Trial length in days (must match pricing.trialDays above).
+    trialDays: 14,
+    // Set STRIPE_TAX_ENABLED=true once accountant confirms (no code change needed).
+    taxEnabled: process.env.STRIPE_TAX_ENABLED === "true",
+  },
 } as const;
 
 export type MuseConfig = typeof muse;
