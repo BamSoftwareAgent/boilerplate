@@ -44,16 +44,18 @@ export function StartTrialButton({
         disabled={loading}
         aria-busy={loading}
         className={cn(
-          "rounded-muse bg-brand text-brand-fg font-semibold transition-colors",
-          "hover:bg-brand-dark active:bg-brand-dark",
-          "disabled:opacity-60 disabled:cursor-not-allowed",
+          "btn-shine rounded-muse font-semibold text-brand-fg",
+          "bg-gradient-to-br from-brand to-brand-2",
+          "shadow-glow transition-all duration-200",
+          "hover:-translate-y-0.5 hover:brightness-110 active:translate-y-0 active:brightness-95",
+          "disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0",
           "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand",
-          size === "lg" ? "px-8 py-3 text-base" : "px-5 py-2.5 text-sm",
+          size === "lg" ? "px-8 py-3.5 text-base" : "px-5 py-2.5 text-sm",
           className,
         )}
       >
         {loading ? (
-          <span className="flex items-center gap-2">
+          <span className="flex items-center justify-center gap-2">
             <span
               className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent"
               role="status"

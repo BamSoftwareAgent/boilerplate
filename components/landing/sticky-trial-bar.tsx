@@ -23,7 +23,7 @@ export function StickyTrialBar() {
     <div
       className={cn(
         "sm:hidden fixed bottom-0 inset-x-0 z-50",
-        "bg-white/95 backdrop-blur-sm border-t border-gray-200 shadow-lg",
+        "glass border-t border-gray-200/70 shadow-[0_-8px_30px_-12px_rgb(0_0_0/0.15)]",
         "px-4 py-3 flex flex-col items-center gap-1.5",
         "transition-transform duration-200 ease-out",
         visible ? "translate-y-0" : "translate-y-full",

@@ -14,6 +14,7 @@ const config: Config = {
         // Brand tokens — driven by CSS vars set per theme preset in globals.css
         brand: {
           DEFAULT: "hsl(var(--brand))",
+          2: "hsl(var(--brand-2))",
           dark: "hsl(var(--brand-dark))",
           light: "hsl(var(--brand-light))",
           fg: "hsl(var(--brand-fg))",
@@ -25,6 +26,10 @@ const config: Config = {
       },
       borderRadius: {
         muse: "var(--radius)",
+      },
+      boxShadow: {
+        glow: "0 8px 30px -8px hsl(var(--brand) / 0.55)",
+        "glow-lg": "0 24px 60px -20px hsl(var(--brand) / 0.45)",
       },
     },
   },

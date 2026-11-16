@@ -39,7 +39,7 @@ export function Proof() {
             {proof.testimonials.map((t) => (
               <figure
                 key={t.name}
-                className="bg-gray-50 rounded-muse p-6 flex flex-col gap-4"
+                className="rounded-muse border border-gray-100 bg-white shadow-sm p-6 flex flex-col gap-4 transition-shadow hover:shadow-md"
               >
                 <blockquote className="text-sm text-gray-700 leading-relaxed flex-1">
                   &ldquo;{t.quote}&rdquo;
