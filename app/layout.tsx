@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import Script from "next/script";
 import { muse } from "@/muse.config";
+import { PostHogIdentify } from "@/lib/auth-client";
 import "./globals.css";
 
 const inter = Inter({ variable: "--font-sans", subsets: ["latin"] });
@@ -39,6 +40,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         )}
       </head>
       <body className={`${inter.variable} ${mono.variable} antialiased`}>
+        <PostHogIdentify />
         {children}
       </body>
     </html>

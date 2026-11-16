@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import posthog from "posthog-js";
+import { publicEnv } from "@/lib/env.public";
 import { getUtm } from "@/lib/utm";
 import { cn } from "@/lib/utils";
 
@@ -19,6 +21,10 @@ export function StartTrialButton({
   const [error, setError] = useState<string | null>(null);
 
   async function handleClick() {
+    if (publicEnv.posthogKey && publicEnv.posthogHost) {
+      posthog.capture("trial_checkout_initiated");
+    }
+
     setLoading(true);
     setError(null);
     try {

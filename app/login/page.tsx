@@ -1,5 +1,7 @@
 "use client";
+import posthog from "posthog-js";
 import { signIn } from "@/lib/auth-client";
+import { publicEnv } from "@/lib/env.public";
 import { useSearchParams } from "next/navigation";
 import { Suspense } from "react";
 
@@ -8,6 +10,10 @@ function LoginForm() {
   const redirect = params.get("redirect") ?? "/dashboard";
 
   async function handleGoogle() {
+    if (publicEnv.posthogKey && publicEnv.posthogHost) {
+      posthog.capture("google_sign_in_started");
+    }
+
     await signIn.social({ provider: "google", callbackURL: redirect });
   }
 
@@ -16,6 +22,11 @@ function LoginForm() {
     const form = new FormData(e.currentTarget);
     const email = form.get("email") as string;
     await signIn.magicLink({ email, callbackURL: redirect });
+
+    if (publicEnv.posthogKey && publicEnv.posthogHost) {
+      posthog.capture("magic_link_requested");
+    }
+
     alert("Check your email for a login link.");
   }
 
