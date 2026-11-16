@@ -151,7 +151,7 @@ Also have a lawyer review the terms and privacy templates once; after that, each
 ---
  
 ## The money
- 
+  
 - **Build cost:** about 65 hours, roughly two weeks of capacity.
 - **Return:** about 8 hours per Stage 1 test and about 55 hours per built muse. At 4 tests a month (~1 build), that's about 85 hours a month. It pays back in the first month of validation.
 - **Running cost:** Vercel Pro at about $20 USD/month for the whole portfolio. Everything else is free per muse until a muse has real usage. Stripe Billing and payment fees scale with revenue.

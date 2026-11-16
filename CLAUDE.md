@@ -45,7 +45,7 @@ Every screen must have:
 - Never touch billing config or production credentials without a PR and a second pair of eyes.
 - PR titles follow conventional commits (`feat:`, `fix:`, `chore:`, etc.).
 
-## Stack
+## Stack 
 
 _Frontend, backend, database, auth, and hosting: fill in per deployment (see [docs/boilerplate-spec.md](docs/boilerplate-spec.md))._
 | Layer | Choice |
