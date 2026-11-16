@@ -13,11 +13,19 @@ export const metadata: Metadata = {
   description: muse.description,
 };
 
+// Runs before paint: apply the stored theme, else follow the system preference.
+const themeInit = `try{var t=localStorage.getItem("theme");if(t==="dark"||(!t&&matchMedia("(prefers-color-scheme: dark)").matches))document.documentElement.classList.add("dark")}catch(e){}`;
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const adsId = muse.googleAdsConversionId;
   return (
-    <html lang="en" className={`theme-${muse.theme.preset}`}>
+    <html
+      lang="en"
+      className={`theme-${muse.theme.preset}`}
+      suppressHydrationWarning
+    >
       <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInit }} />
         {/* Google Ads conversion tag — only rendered when NEXT_PUBLIC_GOOGLE_ADS_ID is set */}
         {adsId && (
           <>

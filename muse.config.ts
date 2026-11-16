@@ -26,7 +26,7 @@ export const muse = {
   },
 
   // ── Theme ─────────────────────────────────────────────────────────────────────
-  // "indigo"  — cool, professional, blue-violet brand colour
+  // "indigo"  — cool, professional, true-blue brand colour
   // "forest"  — warm, grounded, emerald brand colour
   // Change this single value to swap the entire colour scheme.
   theme: {

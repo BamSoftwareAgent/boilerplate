@@ -1,3 +1,4 @@
+import * as Sentry from "@sentry/nextjs";
 import { OTLPLogExporter } from "@opentelemetry/exporter-logs-otlp-http";
 import { resourceFromAttributes } from "@opentelemetry/resources";
 import { BatchLogRecordProcessor, LoggerProvider } from "@opentelemetry/sdk-logs";
@@ -50,6 +51,12 @@ export async function flushPosthogLogs() {
 }
 
 export async function register() {
+  if (process.env.NEXT_RUNTIME === "nodejs") {
+    await import("./sentry.server.config");
+  }
+
+  if (process.env.NEXT_RUNTIME === "edge") {
+    await import("./sentry.edge.config");
   if (process.env.NEXT_RUNTIME !== "nodejs") return;
 
   if (process.env.NODE_ENV === "production") {
@@ -68,3 +75,5 @@ export async function register() {
     }
   }
 }
+
+export const onRequestError = Sentry.captureRequestError;

@@ -11,7 +11,7 @@ export function Proof() {
   if (!hasContent) return null;
 
   return (
-    <section className="py-14 px-4 border-t border-gray-100">
+    <section className="py-14 px-4 border-t border-gray-100 dark:border-white/10">
       <div className="max-w-5xl mx-auto">
         {proof.customerCount && (
           <p className="text-center text-3xl font-bold text-brand mb-10">
@@ -39,13 +39,13 @@ export function Proof() {
             {proof.testimonials.map((t) => (
               <figure
                 key={t.name}
-                className="bg-gray-50 rounded-muse p-6 flex flex-col gap-4"
+                className="rounded-muse border border-gray-100 dark:border-white/10 bg-white dark:bg-white/5 shadow-sm p-6 flex flex-col gap-4 transition-shadow hover:shadow-md"
               >
-                <blockquote className="text-sm text-gray-700 leading-relaxed flex-1">
+                <blockquote className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed flex-1">
                   &ldquo;{t.quote}&rdquo;
                 </blockquote>
-                <figcaption className="text-xs text-gray-500">
-                  <span className="font-semibold text-gray-800">{t.name}</span>
+                <figcaption className="text-xs text-gray-500 dark:text-gray-400">
+                  <span className="font-semibold text-gray-800 dark:text-gray-200">{t.name}</span>
                   {t.role && <span> · {t.role}</span>}
                 </figcaption>
               </figure>
