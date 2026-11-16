@@ -48,6 +48,18 @@ Every screen must have:
 ## Stack
 
 _Frontend, backend, database, auth, and hosting: fill in per deployment (see [docs/boilerplate-spec.md](docs/boilerplate-spec.md))._
-
-- **Billing:** Stripe — Checkout (hosted), Subscriptions, 14-day card-required trials, hosted Customer Portal, Smart Retries, webhooks. Test mode only. See [docs/boilerplate-spec.md](docs/boilerplate-spec.md) for full details and env vars.
-- **Tax:** Stripe Tax wired but off (`STRIPE_TAX_ENABLED=false`) — pending accountant sign-off.
+| Layer | Choice |
+|---|---|
+| Framework | Next.js (App Router), TypeScript, Tailwind, shadcn/ui |
+| Database | Neon Postgres + Drizzle ORM |
+| Hosting | Vercel Pro, one team, one project per muse |
+| Auth | Better Auth (email magic link + Google OAuth, admin plugin) |
+| Payments | Stripe Checkout + Billing + hosted Customer Portal, one Stripe account per muse |
+| Transactional email | Resend + React Email, sent from each muse's domain |
+| Inbound email | Cloudflare Email Routing to one support inbox, batched weekly |
+| Analytics | PostHog, one project per muse |
+| Errors | Sentry, one project per muse |
+| Uptime | Better Stack, email alerts only |
+| Domains and DNS | Cloudflare Registrar |
+| Scheduled jobs | Vercel Cron; a durable job runner only under the rule of two |
+| Code hosting | GitHub, one private repo per muse, created from the `boilerplate` template |
