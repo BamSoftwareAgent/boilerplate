@@ -32,17 +32,17 @@ export function Benefits() {
     <section id="benefits" className="py-16 px-4 scroll-mt-20">
       <div className="max-w-4xl mx-auto">
         <Reveal>
-          <h2 className="text-2xl sm:text-3xl font-bold text-center text-gray-900 mb-12 text-balance">
+          <h2 className="text-2xl sm:text-3xl font-bold text-center text-gray-900 dark:text-white mb-12 text-balance">
             {heading}
           </h2>
         </Reveal>
         <div className="grid sm:grid-cols-3 gap-6">
           {pillars.map((pillar, i) => (
             <Reveal key={pillar.title} delay={i * 110}>
-              <div className="group h-full rounded-muse border border-gray-100 bg-white p-7 text-center shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-brand/10 hover:border-brand/20">
+              <div className="group h-full rounded-muse border border-gray-100 dark:border-white/10 bg-white dark:bg-white/5 p-7 text-center shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-brand/10 hover:border-brand/20 dark:hover:border-brand/30">
                 <BenefitIcon name={pillar.icon} />
-                <h3 className="font-semibold text-gray-900 mb-2">{pillar.title}</h3>
-                <p className="text-sm text-gray-600 leading-relaxed">{pillar.body}</p>
+                <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-2">{pillar.title}</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">{pillar.body}</p>
               </div>
             </Reveal>
           ))}

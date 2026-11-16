@@ -24,21 +24,21 @@ export function Hero() {
           className="aurora anim-float w-[420px] h-[420px] -top-24 -right-24 bg-[hsl(var(--brand-2)/0.3)]"
           style={{ animationDelay: "-5s" }}
         />
-        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent to-white" />
+        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent to-background" />
       </div>
 
       <div className="px-4 pt-20 pb-16 text-center max-w-3xl mx-auto w-full">
-        <p className="anim-rise inline-flex items-center gap-1.5 rounded-full border border-brand/20 bg-brand-light/80 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-brand-dark">
+        <p className="anim-rise inline-flex items-center gap-1.5 rounded-full border border-brand/20 bg-brand-light/80 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-brand-dark dark:text-brand">
           <Sparkles className="w-3.5 h-3.5" aria-hidden />
           {hero.eyebrow}
         </p>
 
-        <h1 className="anim-rise mt-6 text-4xl sm:text-6xl font-bold tracking-tight text-gray-900 leading-[1.08] text-balance">
+        <h1 className="anim-rise mt-6 text-4xl sm:text-6xl font-bold tracking-tight text-gray-900 dark:text-white leading-[1.08] text-balance">
           {lead && <>{lead} </>}
           <span className="text-gradient">{tail}</span>
         </h1>
 
-        <p className="anim-rise [animation-delay:150ms] mt-6 text-lg sm:text-xl text-gray-600 max-w-xl mx-auto leading-relaxed">
+        <p className="anim-rise [animation-delay:150ms] mt-6 text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-xl mx-auto leading-relaxed">
           {hero.subheadline}
         </p>
 
@@ -46,7 +46,7 @@ export function Hero() {
           {/* Sentinel observed by StickyTrialBar to know when hero CTA leaves viewport */}
           <div id="hero-cta-sentinel" aria-hidden />
           <StartTrialButton size="lg" />
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-gray-500 dark:text-gray-400">
             {pricing.trialDays}-day free trial · Card required · Cancel any time · 30-day refund
           </p>
         </div>
@@ -55,8 +55,8 @@ export function Hero() {
           <div className="anim-rise [animation-delay:350ms] mt-14 max-w-2xl mx-auto">
             {/* Browser-chrome frame with a gradient edge */}
             <div className="rounded-[calc(var(--radius)+6px)] bg-gradient-to-br from-brand/50 via-brand-2/50 to-brand/50 p-px shadow-glow-lg">
-              <div className="rounded-[calc(var(--radius)+5px)] overflow-hidden bg-white">
-                <div className="flex items-center gap-1.5 px-4 py-2.5 bg-gray-50 border-b border-gray-100" aria-hidden>
+              <div className="rounded-[calc(var(--radius)+5px)] overflow-hidden bg-white dark:bg-gray-900">
+                <div className="flex items-center gap-1.5 px-4 py-2.5 bg-gray-50 dark:bg-gray-800/80 border-b border-gray-100 dark:border-white/10" aria-hidden>
                   <span className="w-2.5 h-2.5 rounded-full bg-red-300" />
                   <span className="w-2.5 h-2.5 rounded-full bg-amber-300" />
                   <span className="w-2.5 h-2.5 rounded-full bg-green-300" />

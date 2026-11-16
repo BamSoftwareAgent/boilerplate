@@ -8,16 +8,16 @@ export function Pricing() {
   return (
     <section
       id="pricing"
-      className="relative overflow-hidden py-20 px-4 scroll-mt-20 bg-gradient-to-b from-white via-[hsl(var(--brand-light)/0.6)] to-white"
+      className="relative overflow-hidden py-20 px-4 scroll-mt-20 bg-gradient-to-b from-background via-[hsl(var(--brand-light)/0.6)] to-background"
     >
       <div className="aurora w-[380px] h-[380px] top-10 left-1/2 -translate-x-1/2 bg-[hsl(var(--brand)/0.18)]" aria-hidden />
 
       <div className="relative max-w-sm mx-auto text-center">
         <Reveal>
-          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-2">
             Simple pricing
           </h2>
-          <p className="text-gray-600 mb-10 text-sm">One plan. Everything included.</p>
+          <p className="text-gray-600 dark:text-gray-300 mb-10 text-sm">One plan. Everything included.</p>
         </Reveal>
 
         <Reveal delay={120}>
@@ -26,14 +26,14 @@ export function Pricing() {
               {trialDays}-day free trial
             </span>
 
-            <div className="rounded-muse bg-white p-8 pt-10">
+            <div className="rounded-muse bg-white dark:bg-gray-900 p-8 pt-10">
               <div className="mb-7">
-                <span className="text-6xl font-bold tracking-tight text-gray-900">{amount}</span>
-                <span className="text-gray-500 ml-1.5 text-lg">{interval}</span>
+                <span className="text-6xl font-bold tracking-tight text-gray-900 dark:text-white">{amount}</span>
+                <span className="text-gray-500 dark:text-gray-400 ml-1.5 text-lg">{interval}</span>
               </div>
 
               <ul
-                className="space-y-3.5 text-sm text-gray-600 text-left mb-8"
+                className="space-y-3.5 text-sm text-gray-600 dark:text-gray-300 text-left mb-8"
                 aria-label="Included features"
               >
                 {features.map((f) => (
@@ -42,7 +42,7 @@ export function Pricing() {
                       className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-brand-light flex-shrink-0 mt-px"
                       aria-hidden
                     >
-                      <Check className="w-3 h-3 text-brand-dark" strokeWidth={3} />
+                      <Check className="w-3 h-3 text-brand-dark dark:text-brand" strokeWidth={3} />
                     </span>
                     {f}
                   </li>
@@ -51,7 +51,7 @@ export function Pricing() {
 
               <StartTrialButton size="lg" className="w-full" />
 
-              <p className="mt-4 text-xs text-gray-400">
+              <p className="mt-4 text-xs text-gray-400 dark:text-gray-500">
                 {trialDays}-day free trial · Card required · Cancel any time · 30-day refund
               </p>
             </div>

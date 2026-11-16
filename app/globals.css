@@ -6,6 +6,15 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  color-scheme: light;
+}
+
+/* Dark mode: system preference by default (set pre-paint in layout.tsx),
+   user override persisted in localStorage via the nav toggle. */
+.dark {
+  --background: #0b0b10;
+  --foreground: #ededed;
+  color-scheme: dark;
 }
 
 /* ── Preset: indigo ───────────────────────────────────────────────────────── */
@@ -21,6 +30,14 @@
   --radius:      0.75rem;
 }
 
+/* Brighter brand hues + deep tinted surfaces for dark backgrounds */
+.dark.theme-indigo {
+  --brand:       238 92% 71%;
+  --brand-2:     275 92% 72%;
+  --brand-dark:  238 88% 64%;
+  --brand-light: 238 45% 14%;
+}
+
 /* ── Preset: forest ───────────────────────────────────────────────────────── */
 /* Warm, grounded. Emerald brand with a teal gradient partner. */
 .theme-forest {
@@ -32,6 +49,13 @@
   --accent:      38 92% 50%;    /* amber-500   */
   --accent-dark: 32 95% 44%;    /* amber-600   */
   --radius:      1rem;
+}
+
+.dark.theme-forest {
+  --brand:       158 62% 50%;
+  --brand-2:     190 78% 52%;
+  --brand-dark:  158 60% 42%;
+  --brand-light: 158 40% 10%;
 }
 
 html {
@@ -68,6 +92,9 @@ body {
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
   }
+  .dark .glass {
+    background: rgb(11 11 16 / 0.72);
+  }
 
   /* Faint blueprint grid that fades out toward the bottom */
   .bg-grid {
@@ -86,6 +113,9 @@ body {
     filter: blur(80px);
     opacity: 0.5;
     pointer-events: none;
+  }
+  .dark .aurora {
+    opacity: 0.3;
   }
 }
 
