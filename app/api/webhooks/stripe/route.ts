@@ -1,5 +1,8 @@
+import { SeverityNumber } from "@opentelemetry/api-logs";
+import { after } from "next/server";
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
+import { flushPosthogLogs, posthogLog } from "@/instrumentation";
 import { stripe } from "@/lib/stripe";
 import { db } from "@/lib/db/client";
 import { stripeEvents } from "@/lib/db/schema";
@@ -40,6 +43,17 @@ export async function POST(req: NextRequest) {
     type: event.type,
     payload: body,
   });
+
+  posthogLog?.emit({
+    body: "stripe_webhook_recorded",
+    severityNumber: SeverityNumber.INFO,
+    attributes: {
+      route: "/api/webhooks/stripe",
+      event_type: event.type,
+      duplicate: false,
+    },
+  });
+  after(flushPosthogLogs);
 
   return NextResponse.json({ received: true });
 }
