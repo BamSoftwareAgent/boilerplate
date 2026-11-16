@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { getUtm } from "@/lib/utm";
+import { track } from "@/lib/analytics/posthog-client";
 import { cn } from "@/lib/utils";
 
 interface Props {
@@ -18,6 +19,8 @@ export function StartTrialButton({ size = "default", className }: Props) {
     setError(null);
     try {
       const utm = getUtm();
+      const priceId = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY ?? "";
+      track("checkout_started", { price_id: priceId, ...utm });
       const res = await fetch("/api/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },

@@ -4,6 +4,7 @@ import { stripe } from "@/lib/stripe";
 import { db } from "@/lib/db/client";
 import { users } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
+import { trackServer } from "@/lib/analytics/posthog-server";
 
 export async function POST(req: NextRequest) {
   const body = await req.text();
@@ -25,14 +26,14 @@ export async function POST(req: NextRequest) {
         break;
       case "customer.subscription.created":
       case "customer.subscription.updated":
-        await handleSubscriptionUpsert(event.data.object as Stripe.Subscription);
+        await handleSubscriptionUpsert(event.data.object as Stripe.Subscription, event.type);
         break;
       case "customer.subscription.deleted":
         await handleSubscriptionDeleted(event.data.object as Stripe.Subscription);
         break;
       case "invoice.payment_succeeded":
       case "invoice.payment_failed":
-        await handleInvoice(event.data.object as Stripe.Invoice);
+        await handleInvoice(event.data.object as Stripe.Invoice, event.type);
         break;
     }
   } catch (err) {
@@ -63,12 +64,12 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
   }
 }
 
-async function handleSubscriptionUpsert(sub: Stripe.Subscription) {
+async function handleSubscriptionUpsert(sub: Stripe.Subscription, eventType?: string) {
   const customerId = sub.customer as string;
   const item = sub.items.data[0];
-  // current_period_end moved to SubscriptionItem in the 2026 API
   const periodEnd = (item as Stripe.SubscriptionItem & { current_period_end?: number })
     ?.current_period_end;
+  const utm = sub.metadata ?? {};
 
   await db.update(users)
     .set({
@@ -79,19 +80,49 @@ async function handleSubscriptionUpsert(sub: Stripe.Subscription) {
       currentPeriodEnd: periodEnd ? new Date(periodEnd * 1000) : null,
     })
     .where(eq(users.stripeCustomerId, customerId));
+
+  if (eventType === "customer.subscription.created" && sub.status === "trialing") {
+    trackServer(customerId, "trial_started", {
+      subscription_id: sub.id,
+      customer_id: customerId,
+      utm_source: utm.utm_source,
+      utm_medium: utm.utm_medium,
+      utm_campaign: utm.utm_campaign,
+    });
+  } else if (sub.status === "active") {
+    trackServer(customerId, "subscription_active", {
+      subscription_id: sub.id,
+      customer_id: customerId,
+      utm_source: utm.utm_source,
+      utm_medium: utm.utm_medium,
+      utm_campaign: utm.utm_campaign,
+    });
+  }
 }
 
 async function handleSubscriptionDeleted(sub: Stripe.Subscription) {
   await db.update(users)
     .set({ subscriptionStatus: "canceled" })
     .where(eq(users.subscriptionId, sub.id));
+
+  trackServer(sub.customer as string, "canceled", {
+    subscription_id: sub.id,
+    customer_id: sub.customer as string,
+  });
 }
 
-async function handleInvoice(invoice: Stripe.Invoice) {
-  // In the 2026 API, subscription is nested under parent.subscription_details
+async function handleInvoice(invoice: Stripe.Invoice, eventType: string) {
   const subRef = invoice.parent?.subscription_details?.subscription;
   if (!subRef) return;
   const subId = typeof subRef === "string" ? subRef : subRef.id;
   const sub = await stripe.subscriptions.retrieve(subId);
+
+  if (eventType === "invoice.payment_failed") {
+    trackServer(sub.customer as string, "payment_failed", {
+      subscription_id: sub.id,
+      customer_id: sub.customer as string,
+    });
+  }
+
   await handleSubscriptionUpsert(sub);
 }

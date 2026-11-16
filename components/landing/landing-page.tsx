@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect } from "react";
-import { captureUtm } from "@/lib/utm";
+import { captureUtm, getUtm } from "@/lib/utm";
+import { track } from "@/lib/analytics/posthog-client";
 import { Hero } from "./hero";
 import { ProblemAfter } from "./problem-after";
 import { Benefits } from "./benefits";
@@ -11,6 +12,8 @@ import { Faq } from "./faq";
 export function LandingPage() {
   useEffect(() => {
     captureUtm();
+    const utm = getUtm();
+    track("page_viewed", { path: "/home", ...utm });
   }, []);
 
   return (
