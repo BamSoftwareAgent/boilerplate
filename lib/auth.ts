@@ -1,8 +1,11 @@
 import { betterAuth } from "better-auth";
 import { magicLink } from "better-auth/plugins";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
+import { render } from "@react-email/render";
 import { db } from "./db/client";
 import * as schema from "./db/schema";
+import { resend, FROM } from "./email/client";
+import { MagicLinkEmail } from "./email/templates/magic-link";
 
 export const auth = betterAuth({
   database: drizzleAdapter(db, {
@@ -20,9 +23,14 @@ export const auth = betterAuth({
   plugins: [
     magicLink({
       sendMagicLink: async ({ email, url }) => {
-        // Swap this for Resend in week 2 transactional email PR.
-        // For now, log to console so local dev works without email config.
-        console.log(`Magic link for ${email}: ${url}`);
+        const html = await render(MagicLinkEmail({ url }));
+        const { error } = await resend.emails.send({
+          from: FROM,
+          to: email,
+          subject: `Your sign-in link`,
+          html,
+        });
+        if (error) throw new Error(`Resend error: ${error.message}`);
       },
     }),
   ],
