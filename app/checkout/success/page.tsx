@@ -23,9 +23,9 @@ export default function CheckoutSuccessPage() {
         </Link>
         <p className="text-xs text-gray-400">
           Didn&apos;t get an email? Check your spam folder or{" "}
-          <a href="/" className="underline hover:text-gray-600">
+          <Link href="/" className="underline hover:text-gray-600">
             go back to {muse.name}
-          </a>
+          </Link>
           .
         </p>
       </div>
