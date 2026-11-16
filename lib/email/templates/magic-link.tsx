@@ -30,7 +30,7 @@ export function MagicLinkEmail({ url }: MagicLinkEmailProps) {
             </Button>
           </Section>
           <Text style={hint}>
-            If you didn't request this, you can safely ignore this email.
+            If you did not request this, you can safely ignore this email.
           </Text>
         </Container>
       </Body>
