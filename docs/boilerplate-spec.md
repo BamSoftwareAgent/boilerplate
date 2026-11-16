@@ -4,7 +4,7 @@ A reusable foundation for independent subscription SaaS products.
 Each product is a fresh deployment with its own Stripe account.
 
 ---
-
+ 
 ## Stripe
 
 ### Products in use
